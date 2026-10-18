@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { margin: 0; height: 100vh; display: flex; flex-direction: column; }
+    .header { background: #eee; padding: 20px; text-align: center; }
+    .main { flex: 1; position: relative; background: #fff; }
+    .footer { background: #eee; padding: 20px; text-align: center; }
+    
+    df-messenger {
+      z-index: 999;
+      --df-messenger-button-titlebar-color: #007bff;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">Header</div>
+  <div class="main" id="main-container">
+    <df-messenger
+      intent="WELCOME"
+      chat-title="CollegeHelpBot"
+      agent-id="5a70758d-94b9-41f9-b439-73ba3e7f9114"
+      language-code="en"
+      expand="true">
+    </df-messenger>
+  </div>
+  <div class="footer">Footer</div>
+
+  <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+  <script>
+    window.addEventListener('dfMessengerLoaded', function (event) {
+      const dfMessenger = document.querySelector('df-messenger');
+      
+      // df-messenger's own shadow root
+      const style1 = document.createElement('style');
+      style1.textContent = `
+        div.df-messenger-wrapper {
+          position: relative !important;
+          width: 100% !important;
+          height: 100% !important;
+          bottom: auto !important;
+          right: auto !important;
+        }
+        df-messenger-chat-bubble {
+          display: none !important;
+        }
+      `;
+      dfMessenger.shadowRoot.appendChild(style1);
+
+      const chat = dfMessenger.shadowRoot.querySelector('df-messenger-chat');
+      if (chat) {
+        const style2 = document.createElement('style');
+        style2.textContent = `
+          .chat-wrapper {
+            position: relative !important;
+            bottom: auto !important;
+            right: auto !important;
+            width: 100% !important;
+            height: 100% !important;
+            max-height: none !important;
+            max-width: none !important;
+            border-radius: 0 !important;
+            box-shadow: none !important;
+          }
+          df-messenger-titlebar {
+            display: none !important;
+          }
+        `;
+        chat.shadowRoot.appendChild(style2);
+      }
+    });
+  </script>
+</body>
+</html>

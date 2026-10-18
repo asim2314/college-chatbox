@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { margin: 0; display: flex; justify-content: center; align-items: center; height: 100vh; background: #eee; }
+    .container { width: 500px; height: 600px; background: white; border: 1px solid #ccc; position: relative; }
+    df-messenger {
+      --df-messenger-button-titlebar-color: #007bff;
+      --df-messenger-chat-window-height: 100%;
+      --df-messenger-chat-window-width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <df-messenger
+      intent="WELCOME"
+      chat-title="CollegeHelpBot"
+      agent-id="5a70758d-94b9-41f9-b439-73ba3e7f9114"
+      language-code="en"
+      expand="true">
+    </df-messenger>
+  </div>
+  <script src="https://www.gstatic.com/dialogflow-console/fast/messenger/bootstrap.js?v=1"></script>
+</body>
+</html>
